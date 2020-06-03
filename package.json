@@ -1,5 +1,5 @@
 {
-  "name": "dropdown-menu",
+  "name": "@nearmint/dropdown-menu",
   "version": "1.0.1",
   "description": "Using this package, you can easily create dropdowns.",
   "main": "index.js",
