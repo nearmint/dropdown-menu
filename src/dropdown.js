@@ -6,9 +6,12 @@ module.exports = {
         if (dropdownContent.classList.contains('slideup')) {
             dropdownContent.classList.remove('slideup');
             dropdownContent.classList.add('slidedown');
+            console.log(event.target);
+            // event.target.classList.add('hide');
           } else {
             dropdownContent.classList.remove('slidedown');
             dropdownContent.classList.add('slideup');
+            // event.target.classList.remove('hide');
         
     }
     
@@ -22,6 +25,8 @@ module.exports = {
       window.onclick = function(event) {
       if (!event.target.matches('.menubutton')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
+        // var dropdownsMobile = document.getElementsByClassName("dropdown-content-mobile");
+        // var e;
         var i;
         for (i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];
@@ -30,8 +35,40 @@ module.exports = {
             openDropdown.classList.add('slideup');
           }
         }
+
+        // for (e = 0; e < dropdownsMobile.length; e++) {
+        //     var openDropdown = dropdownsMobile[e];
+        //     if (!openDropdown.classList.contains('slideup')) {
+        //       openDropdown.classList.remove('slidedown');
+        //       openDropdown.classList.add('slideup');
+        //     }
+        //   }
+
+
+
       }
     }
+
+
+    window.onclick =function(event) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content-mobile");
+        var i;
+
+        if (!event.target.classList.contains('fa-bars')) {
+
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (!openDropdown.classList.contains('slideup')) {
+            openDropdown.classList.remove('slidedown');
+            openDropdown.classList.add('slideup');
+          }
+        }
+    }
+    }
+
+
+
     
     const sheet = (function() {
       // Create the <style> tag
@@ -42,6 +79,10 @@ module.exports = {
       // style.setAttribute("media", "only screen and (max-width : 1024px)")
     
       // WebKit hack :(
+
+        style.setAttribute("media", "screen");
+        style.setAttribute("media", "only screen and (min-width: 1024px)");
+
       style.appendChild(document.createTextNode(""));
     
       // Add the <style> element to the page
@@ -49,6 +90,8 @@ module.exports = {
     
       return style.sheet;
     })();
+    
+    sheet.insertRule(".dropdown-mobile { display: none; }");
     
     sheet.insertRule(".slidedown { max-height: 600px; }");
     
@@ -69,13 +112,56 @@ module.exports = {
     sheet.insertRule(".slideup, .slidedown {max-height: 0;overflow-y: hidden; -webkit-transition: max-height 0.5s ease-in-out; -moz-transition: max-height 0.5s ease-in-out;-o-transition: max-height 0.5s ease-in-out; transition: max-height 0.5s ease-in-out;}");
     
 
+    const sheetMobile = (function() {
+        // Create the <style> tag
+        var style = document.createElement("style");
+      
+        style.setAttribute("media", "screen");
+        style.setAttribute("media", "only screen and (max-width: 1024px)");
+
+        // Add a media (and/or media query) here if you'd like!
+        // style.setAttribute("media", "screen")
+        // style.setAttribute("media", "only screen and (max-width : 1024px)")
+      
+        // WebKit hack :(
+        style.appendChild(document.createTextNode(""));
+      
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+      
+        return style.sheet;
+      })();
+
+      var head = document.getElementsByTagName('HEAD')[0];  
+  
+        // Create new link Element 
+        var link = document.createElement('link'); 
+  
+        // set the attributes for link element  
+        link.rel = 'stylesheet';  
+      
+        link.type = 'text/css'; 
+      
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css';  
+  
+        // Append link element to HTML head 
+        head.appendChild(link);  
 
 
-    }
 
+      sheetMobile.insertRule(".dropdown {display: none;}")
+      sheetMobile.insertRule(".slidedown {max-width: 80vw;}")
+      sheetMobile.insertRule(".slideup, .slidedown {max-width: 0; overflow-y: hidden; -webkit-transition: max-width 0.5s ease-in-out; -moz-transition: max-width 0.5s ease-in-out;-o-transition: max-width 0.5s ease-in-out; transition: max-width 0.5s ease-in-out;}");
 
+      sheetMobile.insertRule(".dropdown-content-mobile {display: flex; flex-direction: column; height: 200px; background-color: lightgrey; align-items: center; justify-content: space-around; position: absolute; top: 0px; width: 80vw; height: 100vh; font-size: 32px;}")
+  
+      sheetMobile.insertRule(".hide {display: none !important;}");
 
-    
+      sheetMobile.insertRule("* {margin: 0; padding: 0;}")
+
+    //    sheetMobile.insertRule(".menubutton-mobile {padding-top: 1em;}" )
+
+    }   
     
     
     }
