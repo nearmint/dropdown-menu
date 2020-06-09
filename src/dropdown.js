@@ -150,8 +150,9 @@ module.exports = {
 
 
       sheetMobile.insertRule(".dropdown {display: none;}")
-      sheetMobile.insertRule(".slidedown {max-width: 80vw;}")
-      sheetMobile.insertRule(".slideup, .slidedown {max-width: 0; overflow-y: hidden; -webkit-transition: max-width 0.5s ease-in-out; -moz-transition: max-width 0.5s ease-in-out;-o-transition: max-width 0.5s ease-in-out; transition: max-width 0.5s ease-in-out;}");
+      sheetMobile.insertRule(".slidedown {max-width: 80vw; transform: translateX(0vw);}")
+      // sheetMobile.insertRule(".slideup, .slidedown {max-width: 0; overflow-y: hidden; -webkit-transition: max-width 0.5s ease-in-out; -moz-transition: max-width 0.5s ease-in-out;-o-transition: max-width 0.5s ease-in-out; transition: max-width 0.5s ease-in-out;}");
+      sheetMobile.insertRule('.slideup, .slidedown {overflow: hidden; transform: translateX(-80vw); transition: all 0.5s;}')
 
       sheetMobile.insertRule(".dropdown-content-mobile {display: flex; flex-direction: column; height: 200px; background-color: lightgrey; align-items: center; justify-content: space-around; position: absolute; top: 0px; width: 80vw; height: 100vh; font-size: 32px;}")
   
